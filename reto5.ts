@@ -1,19 +1,14 @@
 function cyberReindeer(road, time) {
-  const replaceAt = ((text:string, index: number, replacement: string): string => {
-    return text.substring(0, index) + replacement + text.substring(index + replacement.length);
-  })
-
-  let position_item = ''
   let position = 0
   const movement:Array<string> = []
   for (let i = 0; i < time; i++){
-
-
     // store the road state 
-    position_item = (i == 0) ? '.' : road[position]
-    road = replaceAt(road, position, 'S')
+    let position_item = (i == 0) ? '.' : road[position]
+    let text_left = road.substring(0, position)
+    let text_right = road.substring(position + 1)
+    road = text_left + 'S' + text_right
     movement.push(road)
-    road = replaceAt(road, position, position_item)
+    road = text_left + position_item + text_right
     
     // after 5 steps the gates open
     if (i == 4){
