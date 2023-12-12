@@ -1,5 +1,5 @@
 function drawGift(size, symbol) {
-    let baseLine:String = '#'
+    let baseLine:String  = '#'
     baseLine.repeat(size);
     let draw: string[][] = []
     let finalDraw = "";
