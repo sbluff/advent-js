@@ -1,21 +1,21 @@
-function RepeatString(str, num) {
-    var result = '';
-    for (var i = 0; i < num; i++) {
-        result += str;
-    }
-    return result;
-}
-function Represent(gift) {
-    var boxes = Math.floor(gift.count / 10);
-    var bags = gift.count % 10;
-    var boxes_representation = '', bag_representation = '';
-    var pales = Math.floor(boxes / 5);
-    boxes_representation += (pales != 0) ? '[' + RepeatString(gift['type'], pales) + ']' : '';
-    boxes_representation += (boxes % 5 != 0) ? RepeatString('{' + gift['type'] + '}', boxes % 5) : '';
-    bag_representation += '(' + RepeatString(gift['type'], bags) + ')';
-    return boxes_representation + bag_representation;
-}
 function organizeGifts(gifts) {
+    var Represent = function (gift) {
+        var boxes = Math.floor(gift.count / 10);
+        var bags = gift.count % 10;
+        var boxes_representation = '', bag_representation = '';
+        var pales = Math.floor(boxes / 5);
+        boxes_representation += (pales != 0) ? RepeatString('[' + gift['type'] + ']', pales) : '';
+        boxes_representation += (boxes % 5 != 0) ? RepeatString('{' + gift['type'] + '}', boxes % 5) : '';
+        bag_representation += (bags != 0) ? '(' + RepeatString(gift['type'], bags) + ')' : '';
+        return boxes_representation + bag_representation;
+    };
+    var RepeatString = function (str, num) {
+        var result = '';
+        for (var i = 0; i < num; i++) {
+            result += str;
+        }
+        return result;
+    };
     var organized_gifts = {};
     var start_index = 0; //to get the substrings 
     for (var i = 0; i < gifts.length; i++) {
@@ -34,5 +34,7 @@ function organizeGifts(gifts) {
     // Code here
 }
 var result1 = organizeGifts("76a11b");
+console.log(":happy");
+console.log(":green");
 console.log(result1);
 // '[a]{a}{a}(aaaaaa){b}(b)'

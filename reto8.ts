@@ -10,9 +10,9 @@ function organizeGifts(gifts): string {
 
     let boxes_representation = '', bag_representation = ''
     let pales = Math.floor(boxes / 5)
-    boxes_representation += (pales != 0) ? '[' + RepeatString(gift['type'], pales) + ']' : ''
+    boxes_representation += (pales != 0) ? RepeatString('[' + gift['type'] + ']', pales) : ''
     boxes_representation += (boxes%5 != 0) ? RepeatString('{' + gift['type']+ '}', boxes % 5) : ''
-    bag_representation += '(' + RepeatString(gift['type'], bags) + ')'
+    bag_representation += (bags != 0) ? '(' + RepeatString(gift['type'], bags) + ')' : ''
     
     return boxes_representation + bag_representation
   }
@@ -46,5 +46,7 @@ function organizeGifts(gifts): string {
 }
 
 const result1 = organizeGifts(`76a11b`)
+console.log(":happy")
+console.log(":green")
 console.log(result1)
 // '[a]{a}{a}(aaaaaa){b}(b)'
