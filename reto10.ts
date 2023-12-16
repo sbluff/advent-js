@@ -1,37 +1,18 @@
-function createChristmasTree(ornaments:string, height) {
-  let result: string = ""
-  let index = 0
-  let line_lenght = 2*height - 1
-
-  for (let i = 0; i < height; i++){             //one iteration -> one line
-    let char_line = 1 + i                       // characters per line
-    let start = ((height-i-1)%2 == 0) ?  'even' : 'odd'
-    let padding = height - char_line
-    
-    for (let j = 0; j < line_lenght; j++){
-      let position_type = (j % 2 == 0) ? 'even' : 'odd' 
-      let print_condition = (j >= padding && j <= line_lenght - padding && start === position_type)
-
-      if (print_condition){
-        result += ornaments[index % ornaments.length]
-        index++
-        char_line--
-      }
-      else{
-        result += ' '
-      }
+function createChristmasTree(ornaments, height) {
+    let ornamentsIndex = 0;
+    let ornamentsByLevel = 1;
+    let christmasTree = '';
+    for (let index = 1; index <= height; index++) {
+        christmasTree += `${' '.repeat(height-index)}`;
+        for (let level = 1; level <= ornamentsByLevel; level++) {
+            christmasTree += `${ornaments.charAt(ornamentsIndex)}`;
+            if (level != ornamentsByLevel) christmasTree += ' ';
+            ornamentsIndex++;
+            if (ornamentsIndex == ornaments.length) ornamentsIndex = 0;
+        }
+        christmasTree += '\n';
+        ornamentsByLevel++;
     }
-    result += '\n'
-  }
-
-
-
-  for(let i = 0; i < line_lenght; i++){
-    result += (i == Math.floor(line_lenght/2)) ? '|' : ' ' 
-  }
-  result += '\n'
-  console.log(result)
-  return result
+    christmasTree += ' '.repeat(height - 1) + '|\n';
+    return christmasTree;
 }
-
-createChristmasTree('🎄', 60)
